@@ -16,7 +16,7 @@ class MainActivity : ComponentActivity() {
 
     companion object{
         init {
-            System.loadLibrary("brencrypt");
+            System.loadLibrary("brencrypt")
         }
     }
 
@@ -33,6 +33,7 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+        com.example.android.encrypt.NdkMore.testJNI()
     }
 }
 

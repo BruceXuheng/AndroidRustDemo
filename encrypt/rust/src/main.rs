@@ -1,3 +1,6 @@
+use chrono::prelude::*;
+
 fn main() {
-    println!("Hello, world!");
+    let current_datetime = Local::now().timestamp_micros();
+    println!("Current datetime: {}", current_datetime);
 }
