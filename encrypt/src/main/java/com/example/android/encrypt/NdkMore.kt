@@ -1,6 +1,7 @@
 package com.example.android.encrypt
 
 import android.util.Log
+import java.nio.charset.Charset
 
 object NdkMore {
 
@@ -13,11 +14,11 @@ object NdkMore {
         val char = ProviderJNI.changeJNIChar('a')
         ld(char.toString())
 
-        val byte:Byte = 1
+        val byte: Byte = 1
         val byteData = ProviderJNI.changeJNIByte(byte)
         ld(byteData.toString())
 
-         val intData = ProviderJNI.changeJNIInt(0)
+        val intData = ProviderJNI.changeJNIInt(0)
         ld(intData.toString())
 
         val booleanData = ProviderJNI.changeJNIBoolean(true)
@@ -32,6 +33,11 @@ object NdkMore {
         val nativeDouble = ProviderJNI.changeJNIDouble(343.11)
         ld(nativeDouble.toString())
 
+
+        val stringData = "hello world"
+        val nativeByteArray = ProviderJNI.changeJNIByteArray(stringData.toByteArray())
+        ld(nativeByteArray.size.toString())
+        ld(nativeByteArray.toString(Charset.defaultCharset()))
 
     }
 

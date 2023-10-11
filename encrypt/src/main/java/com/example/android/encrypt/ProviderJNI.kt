@@ -19,4 +19,7 @@ object ProviderJNI {
     external fun changeJNIDouble(time: Double): Double
 
 
+    external fun changeJNIByteArray(time: ByteArray): ByteArray
+
+
 }

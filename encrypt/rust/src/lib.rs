@@ -5,7 +5,7 @@ extern crate android_logger;
 extern crate jni;
 
 use jni::objects::*;
-use jni::sys::{jchar, jint, jlong, jobject, jstring, jdouble, jfloat, jbyte, jboolean};
+use jni::sys::{jchar, jint, jlong, jobject, jstring, jdouble, jfloat, jbyte, jboolean, jbyteArray, jsize};
 use jni::JNIEnv;
 use chrono::prelude::*;
 
@@ -145,4 +145,35 @@ pub extern "C" fn Java_com_example_android_encrypt_ProviderJNI_changeJNIDouble(
     let current_datetime: f64 = 11.11;
     current_datetime
 }
+
+
+#[no_mangle]
+#[allow(non_snake_case)]
+pub extern "C" fn Java_com_example_android_encrypt_ProviderJNI_changeJNIByteArray<'local>(
+    env: JNIEnv<'local>,
+    _class: JClass,
+    input: JByteArray<'local>,
+) -> JByteArray<'local>
+{
+
+    // 处理接收 字节数组
+    let _input = env.convert_byte_array(&input).unwrap();
+    let inputContent = std::str::from_utf8(&_input).unwrap();
+    info!("this is a changeJNIByteArray inputContent {}", inputContent);
+
+    let sbytes = b"Hello, Kotlin!";
+    let mut bytes = Vec::new();
+    for b in sbytes {
+        bytes.push(b);
+    }
+
+
+    let output = env.byte_array_from_slice(sbytes).unwrap();
+
+    output
+ }
+
+
+
+
 
