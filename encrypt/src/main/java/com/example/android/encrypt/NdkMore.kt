@@ -2,6 +2,8 @@ package com.example.android.encrypt
 
 import android.util.Log
 import java.nio.charset.Charset
+import kotlin.system.measureNanoTime
+
 
 object NdkMore {
 
@@ -44,11 +46,20 @@ object NdkMore {
 
     fun testSM3() {
         // https://www.oscca.gov.cn/sca/xxgk/2010-12/17/1002389/files/302a3ada057c4a73830536d03e683110.pdf
-        var sm3Str = ProviderJNI.sm3("abc")
+        var sm3Str: String
+        var oneTime = measureNanoTime {
+            sm3Str = ProviderJNI.sm3("qwewqeqwewqcixzjcxzqwewqeqwewqcixzjcxzqwewqeqwewqcixzjcxzqwewqeqwewqcixzjcxzqwewqeqwewqcixzjcxzqwewqeqwewqcixzjcxzqwewqeqwewqcixzjcxzqwewqeqwewqcixzjcxzqwewqeqwewqcixzjcxzqwewqeqwewqcixzjcxzqwewqeqwewqcixzjcxzqwewqeqwewqcixzjcxzqwewqeqwewqcixzjcxzqwewqeqwewqcixzjcxzqwewqeqwewqcixzjcxzqwewqeqwewqcixzjcxzqwewqeqwewqcixzjcxzqwewqeqwewqcixzjcxzqwewqeqwewqcixzjcxzqwewqeqwewqcixzjcxzqwewqeqwewqcixzjcxzqwewqeqwewqcixzjcxzqwewqeqwewqcixzjcxzqwewqeqwewqcixzjcxz")
+
+        }
+        ld("sm3 time:$oneTime")
         ld("sm3 签名:$sm3Str")
-        // 66c7f0f4 62eeedd9 d1f2d46b dc10e4e2 4167c487 5cf2f7a2 297da02b 8f4ba8e0
-        sm3Str = ProviderJNI.sm3("abc")
+
+         oneTime = measureNanoTime {
+             sm3Str = ProviderJNI.sm3("abcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabc")
+        }
+        ld("sm3 time:$oneTime")
         ld("sm3 签名:$sm3Str")
+
     }
 
     fun testSM4() {
@@ -64,7 +75,7 @@ object NdkMore {
 
         val sm4Decrypt = ProviderJNI.sm4Decrypt(sm4Encrypt)
 
-        ld("解密结果:"+String(sm4Decrypt))
+        ld("解密结果:" + String(sm4Decrypt))
 
     }
 

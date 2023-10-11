@@ -14,7 +14,7 @@ import com.example.android.rustdemo.ui.theme.AndroidRustDemoTheme
 
 class MainActivity : ComponentActivity() {
 
-    companion object{
+    companion object {
         init {
             System.loadLibrary("brencrypt")
         }
@@ -33,9 +33,12 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
-        com.example.android.encrypt.NdkMore.testJNI()
-        com.example.android.encrypt.NdkMore.testSM3()
-        com.example.android.encrypt.NdkMore.testSM4()
+        Thread {
+            Thread.sleep(1000)
+            com.example.android.encrypt.NdkMore.testJNI()
+            com.example.android.encrypt.NdkMore.testSM3()
+            com.example.android.encrypt.NdkMore.testSM4()
+        }.start()
     }
 }
 

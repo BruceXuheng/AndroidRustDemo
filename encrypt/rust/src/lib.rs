@@ -213,17 +213,15 @@ pub extern "C" fn Java_com_example_android_encrypt_ProviderJNI_sm3(
 ) -> jstring {
 	let input: String = env.get_string(&data).expect("input msg error").into();
 
-	info!("待签名数据=[{}]", input);
+	// info!("待签名数据=[{}]", input);
 
 	let mut hash = Sm3Hash::new(input.as_bytes());
 	let digest: [u8; 32] = hash.get_hash();
 
 	// 66c7f0f4 62eeedd9 d1f2d46b dc10e4e2 4167c487 5cf2f7a2 297da02b 8f4ba8e0
-	let content = digest.iter().map(|&b| format!("{:02x}", b)).collect::<Vec<_>>().join("");
-
 
 	let name = env
-		.new_string(content)
+		.new_string(digest.iter().map(|&b| format!("{:02x}", b)).collect::<Vec<_>>().join(""))
 		.expect("br sm3 expect");
 
 	**name

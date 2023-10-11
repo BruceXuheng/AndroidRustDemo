@@ -1,8 +1,13 @@
 ---
 title: Android Rust NDK
 date: 2023-10-08 15:36:41
+categories:
+- Android
 tags:
-
+- Android
+- Rust
+- JNI
+- NDK
 ---
 
 一、集成Rust&NDK开发
@@ -109,6 +114,14 @@ java
  	--armeabi-v7a
   		---libbrencrypt.so
 ```
+
+
+二、功能
+
+2.1 基本数据交互
+
+
+2.2 SM3/SM4加解密交互
 
 
 
