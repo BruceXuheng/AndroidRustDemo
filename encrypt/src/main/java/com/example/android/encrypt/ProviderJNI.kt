@@ -21,5 +21,33 @@ object ProviderJNI {
 
     external fun changeJNIByteArray(time: ByteArray): ByteArray
 
+    /**
+     * sm3 签名
+     * @param content String
+     * @return String
+     */
+    external fun sm3(content: String): String
+
+    /**
+     * sm4 设置密钥
+     * @param time ByteArray
+     * @return ByteArray
+     */
+    external fun setSm4Key(time: ByteArray):Boolean
+
+    /**
+     * sm4 加密
+     * @param content ByteArray
+     * @return ByteArray
+     */
+    external fun sm4Encrypt(content: ByteArray): ByteArray
+
+    /**
+     * sm4 解密
+     * @param content ByteArray
+     * @return ByteArray
+     */
+    external fun sm4Decrypt(content: ByteArray): ByteArray
+
 
 }

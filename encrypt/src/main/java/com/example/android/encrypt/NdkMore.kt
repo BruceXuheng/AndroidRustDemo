@@ -42,6 +42,32 @@ object NdkMore {
     }
 
 
+    fun testSM3() {
+        // https://www.oscca.gov.cn/sca/xxgk/2010-12/17/1002389/files/302a3ada057c4a73830536d03e683110.pdf
+        var sm3Str = ProviderJNI.sm3("abc")
+        ld("sm3 签名:$sm3Str")
+        // 66c7f0f4 62eeedd9 d1f2d46b dc10e4e2 4167c487 5cf2f7a2 297da02b 8f4ba8e0
+        sm3Str = ProviderJNI.sm3("abc")
+        ld("sm3 签名:$sm3Str")
+    }
+
+    fun testSM4() {
+        val sm4Key =
+            byteArrayOf(102, 1, 34, 12, 98, 45, 12, 11, 5, 123, 22, 107, 2, 16, 12, 43)
+
+        val sm4Status = ProviderJNI.setSm4Key(sm4Key)
+        ld("setSm4Key Status = $sm4Status")
+
+        val content = "hello world".toByteArray()
+
+        val sm4Encrypt = ProviderJNI.sm4Encrypt(content)
+
+        val sm4Decrypt = ProviderJNI.sm4Decrypt(sm4Encrypt)
+
+        ld("解密结果:"+String(sm4Decrypt))
+
+    }
+
 }
 
 fun ld(msg: String) {

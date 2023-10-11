@@ -2,15 +2,50 @@
 name = "brencrypt"
 version = "0.1.0"
 edition = "2021"
+authors = [
+	"Chenxh <163.com>"
+]
+description = " Rust NDK have sm3/4"
+
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+# jni https://crates.io/crates/jni
 jni = "0.21.1"
+# 时间戳工具
 chrono = "0.4.31"
-log = "0.4.14"
 # https://docs.rs/crate/android_logger/0.13.3
 android_logger = "0.13.3"
+log = "0.4.14"
+
+
+# A Rust library for random number generation
+rand = "0.8"
+# 用于从（操作）系统源检索随机数据。假设系统始终提供高质量的加密安全随机数据，理想情况下由硬件熵源支持。
+getrandom = { version = "0.2.10", features = ["js"] }
+# This crate provides convenience methods for encoding and decoding numbers in either big-endian or little-endian order.
+# 以大端序或小端序编码和解码数字的方便方法。
+byteorder = "1.5.0"
+# Big integer types for Rust, BigInt and BigUint.
+num-bigint = "0.4.4"
+# Numeric traits for generic mathematics in Rust.
+num-traits = "0.2.17"
+# Integer trait and functions for Rust.
+num-integer = "0.1.45"
+# This is a Rust library for reading and writing ASN.1 data.
+yasna = { version = "0.5.2", features = ["num-bigint"] }
+# A macro for declaring lazily evaluated statics in Rust.
+lazy_static = "1.4.0"
+
+[dev-dependencies]
+hex = "0.4"
+base64 = "0.21"
+
 
 [lib]
 crate_type = ["staticlib", "cdylib"]
+
+
+[features]
+internal_benches = []

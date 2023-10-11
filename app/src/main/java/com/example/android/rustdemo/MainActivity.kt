@@ -34,6 +34,8 @@ class MainActivity : ComponentActivity() {
             }
         }
         com.example.android.encrypt.NdkMore.testJNI()
+        com.example.android.encrypt.NdkMore.testSM3()
+        com.example.android.encrypt.NdkMore.testSM4()
     }
 }
 
